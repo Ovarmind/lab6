@@ -1,4 +1,5 @@
 import DataModel from '../schemas/data.schema';
+import { IData } from "../models/data.model";
 
 
 export default class DataService {
@@ -30,6 +31,4 @@ export default class DataService {
             throw new Error(`Query failed: ${error}`);
         }
     }
-
-        
 }
