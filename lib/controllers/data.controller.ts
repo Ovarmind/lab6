@@ -16,13 +16,25 @@ class DataController implements Controller {
 
 
     private initializeRoutes() {
-        this.router.get(this.path + '/get', this.getall);
+        this.router.get(this.path + '/get', this.getAll);
+        this.router.post(this.path + '/post', this.postItems);
+        this.router.delete(this.path + '/delete/:id', this.deleteItem);
     }
 
-    private getall = async (request: Request, response: Response) => {
+    private getAll = async (request: Request, response: Response) => {
         let output = await this.dataService.getAll();
         console.log(output)
         response.send(output);
+    }
+
+    private postItems = async (request: Request, response: Response) => {
+            const output = await this.dataService.post(request.body);
+            response.send(output);
+    };
+
+    private deleteItem = async (request: Request, response: Response) => {
+            const output = await this.dataService.delete(request.params.id);
+            response.send(output);
     }
 
 }
